@@ -261,6 +261,7 @@ Parameters:
   MasterInstanceType:
     Default: m4.xlarge
     AllowedValues:
+      - t2.medium
       - t2.xlarge
       - m4.xlarge
       - m4.2xlarge
@@ -277,6 +278,7 @@ Parameters:
   EtcdInstanceType:
     Default: m4.xlarge
     AllowedValues:
+      - t2.medium
       - t2.large
       - t2.xlarge
       - m4.xlarge
@@ -294,6 +296,7 @@ Parameters:
   NodesInstanceType:
     Default: m4.xlarge
     AllowedValues:
+      - t2.medium
       - t2.large
       - t2.xlarge
       - m4.xlarge
