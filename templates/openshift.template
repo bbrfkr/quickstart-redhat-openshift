@@ -554,10 +554,10 @@ Resources:
     Type: "AWS::SecretsManager::Secret"
     Properties:
       SecretString: !Ref OpenShiftAdminPassword
-  RedhatSubscriptionSecret:
-    Type: "AWS::SecretsManager::Secret"
-    Properties:
-      SecretString: !Sub '{"user":"${RedhatSubscriptionUserName}","password":"${RedhatSubscriptionPassword}","poolid":"${RedhatSubscriptionPoolID}"}'
+  #RedhatSubscriptionSecret:
+  #  Type: "AWS::SecretsManager::Secret"
+  #  Properties:
+  #    SecretString: !Sub '{"user":"${RedhatSubscriptionUserName}","password":"${RedhatSubscriptionPassword}","poolid":"${RedhatSubscriptionPoolID}"}'
   RegistryBucket:
     Type: "AWS::S3::Bucket"
   Route53HostedSubdomainZone:

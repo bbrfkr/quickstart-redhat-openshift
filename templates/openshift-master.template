@@ -249,17 +249,17 @@ Parameters:
     MinLength: '8'
     AllowedPattern: ^[^ \\']+$
     NoEcho: 'true'
-  RedhatSubscriptionUserName:
-    Description: Enter Redhat RHN User Name
-    Type: String
-  RedhatSubscriptionPassword:
-    NoEcho: 'true'
-    Description: Enter Redhat RHN Password
-    Type: String
-    AllowedPattern: ^[^ \\']+$
-  RedhatSubscriptionPoolID:
-    Description: Enter Redhat RHN PoolID
-    Type: String
+  #RedhatSubscriptionUserName:
+  #  Description: Enter Redhat RHN User Name
+  #  Type: String
+  #RedhatSubscriptionPassword:
+  #  NoEcho: 'true'
+  #  Description: Enter Redhat RHN Password
+  #  Type: String
+  #  AllowedPattern: ^[^ \\']+$
+  #RedhatSubscriptionPoolID:
+  #  Description: Enter Redhat RHN PoolID
+  #  Type: String
   OpenshiftContainerPlatformVersion:
     Description: OpenShift version to deploy
     Default: '3.10'
@@ -272,8 +272,9 @@ Parameters:
     Description: CIDR block for the VPC
     Type: String
   MasterInstanceType:
-    Default: m4.xlarge
+    Default: t2.medium
     AllowedValues:
+      - t2.medium
       - t2.large
       - m4.xlarge
       - m4.2xlarge
@@ -288,8 +289,9 @@ Parameters:
     Description: Type of EC2 instance for the Master instances
     Type: String
   EtcdInstanceType:
-    Default: m4.xlarge
+    Default: t2.medium
     AllowedValues:
+      - t2.medium
       - t2.large
       - m4.xlarge
       - m4.2xlarge
@@ -304,8 +306,9 @@ Parameters:
     Description: Type of EC2 instance for the Etcd instances
     Type: String
   NodesInstanceType:
-    Default: m4.xlarge
+    Default: t2.medium
     AllowedValues:
+      - t2.medium
       - t2.large
       - m4.xlarge
       - m4.2xlarge
@@ -356,7 +359,7 @@ Parameters:
     Type: String
     Default: ""
   SubDomainPrefix:
-    Default: ''
+    Default: 'aws-okd'
     Description: 'OPTIONAL: Subdomain to use, if left blank DomainName will be used
       without a prefix. If you specify this you must also specify DomainName and HostedZoneID'
     Type: String

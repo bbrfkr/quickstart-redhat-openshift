@@ -27,9 +27,9 @@ fi
 qs_enable_epel &> /var/log/userdata.qs_enable_epel.log || true
 
 qs_retry_command 10 yum -y install jq
-qs_retry_command 25 aws s3 cp ${QS_S3URI}scripts/redhat_ose-register-${OCP_VERSION}.sh ~/redhat_ose-register.sh
-chmod 755 ~/redhat_ose-register.sh
-qs_retry_command 25 ~/redhat_ose-register.sh ${RH_CREDS_ARN}
+#qs_retry_command 25 aws s3 cp ${QS_S3URI}scripts/redhat_ose-register-${OCP_VERSION}.sh ~/redhat_ose-register.sh
+#chmod 755 ~/redhat_ose-register.sh
+#qs_retry_command 25 ~/redhat_ose-register.sh ${RH_CREDS_ARN}
 
 mkdir -p /etc/aws/
 printf "[Global]\nZone = $(curl -s http://169.254.169.254/latest/meta-data/placement/availability-zone)\n" > /etc/aws/aws.conf
@@ -51,10 +51,10 @@ if [ "${LAUNCH_CONFIG}" != "OpenShiftEtcdLaunchConfig" ]; then
 fi
 
 qs_retry_command 10 cfn-init -v  --stack ${AWS_STACKNAME} --resource ${LAUNCH_CONFIG} --configsets quickstart --region ${AWS_REGION}
-qs_retry_command 10 yum install -y wget atomic-openshift-docker-excluder atomic-openshift-node \
-    atomic-openshift-sdn-ovs ceph-common conntrack-tools dnsmasq glusterfs \
+qs_retry_command 10 yum install -y wget origin-docker-excluder origin-node \
+    origin-sdn-ovs ceph-common conntrack-tools dnsmasq glusterfs \
     glusterfs-client-xlators glusterfs-fuse glusterfs-libs iptables-services \
-    iscsi-initiator-utils iscsi-initiator-utils-iscsiuio tuned-profiles-atomic-openshift-node
+    iscsi-initiator-utils iscsi-initiator-utils-iscsiuio tuned-profiles-origin-node
 
 systemctl restart dbus
 systemctl restart dnsmasq

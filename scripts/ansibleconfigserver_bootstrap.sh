@@ -43,9 +43,9 @@ fi
 qs_enable_epel &> /var/log/userdata.qs_enable_epel.log
 
 qs_retry_command 10 yum -y install jq
-qs_retry_command 25 aws s3 cp ${QS_S3URI}scripts/redhat_ose-register-${OCP_VERSION}.sh ~/redhat_ose-register.sh
-chmod 755 ~/redhat_ose-register.sh
-qs_retry_command 20 ~/redhat_ose-register.sh ${RH_CREDS_ARN}
+#qs_retry_command 25 aws s3 cp ${QS_S3URI}scripts/redhat_ose-register-${OCP_VERSION}.sh ~/redhat_ose-register.sh
+#chmod 755 ~/redhat_ose-register.sh
+#qs_retry_command 20 ~/redhat_ose-register.sh ${RH_CREDS_ARN}
 
 qs_retry_command 10 yum -y install yum-versionlock
 
@@ -104,12 +104,15 @@ echo openshift_hosted_registry_storage_s3_region=${AWS_REGION} >> /tmp/openshift
 echo openshift_master_api_port=443 >> /tmp/openshift_inventory_userdata_vars
 echo openshift_master_console_port=443 >> /tmp/openshift_inventory_userdata_vars
 
+# deploy type is OKD
+echo openshift_deployment_type=origin >> /tmp/openshift_inventory_userdata_vars
+
 qs_retry_command 10 yum -y install wget git net-tools bind-utils iptables-services bridge-utils bash-completion kexec-tools sos psacct
 # Workaround this not-a-bug https://bugzilla.redhat.com/show_bug.cgi?id=1187057
 pip uninstall -y urllib3
 qs_retry_command 10 yum -y update
 qs_retry_command 10 pip install urllib3
-qs_retry_command 10 yum -y install atomic-openshift-excluder atomic-openshift-docker-excluder
+qs_retry_command 10 yum -y install origin-excluder origin-docker-excluder
 
 cd /tmp
 qs_retry_command 10 wget https://s3-us-west-1.amazonaws.com/amazon-ssm-us-west-1/latest/linux_amd64/amazon-ssm-agent.rpm
@@ -130,8 +133,8 @@ else
   qs_retry_command 10 yum -y install openshift-ansible
 fi
 
-qs_retry_command 10 yum -y install atomic-openshift-excluder atomic-openshift-docker-excluder
-atomic-openshift-excluder unexclude
+qs_retry_command 10 yum -y install origin-excluder origin-docker-excluder
+origin-excluder unexclude
 
 qs_retry_command 10 aws s3 cp ${QS_S3URI}scripts/scaleup_wrapper.yml  /usr/share/ansible/openshift-ansible/
 qs_retry_command 10 aws s3 cp ${QS_S3URI}scripts/bootstrap_wrapper.yml /usr/share/ansible/openshift-ansible/
@@ -170,7 +173,7 @@ ansible-playbook /usr/share/ansible/openshift-ansible/playbooks/deploy_cluster.y
 
 aws autoscaling resume-processes --auto-scaling-group-name ${OPENSHIFTMASTERASG} --scaling-processes HealthCheck --region ${AWS_REGION}
 
-qs_retry_command 10 yum install -y atomic-openshift-clients
+qs_retry_command 10 yum install -y origin-clients
 AWSSB_SETUP_HOST=$(head -n 1 /tmp/openshift_initial_masters)
 
 set +x
