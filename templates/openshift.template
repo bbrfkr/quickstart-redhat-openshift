@@ -56,12 +56,12 @@ Metadata:
           - NumberOfGluster
           - AutomationBroker
           - ClusterConsole
-      - Label:
-          default: Red Hat Subscription Information
-        Parameters:
-          - RedhatSubscriptionUserName
-          - RedhatSubscriptionPassword
-          - RedhatSubscriptionPoolID
+      #- Label:
+      #    default: Red Hat Subscription Information
+      #  Parameters:
+      #    - RedhatSubscriptionUserName
+      #    - RedhatSubscriptionPassword
+      #    - RedhatSubscriptionPoolID
       - Label:
           default: AWS Quick Start Configuration
         Parameters:
@@ -99,12 +99,12 @@ Metadata:
         default: VPC CIDR
       OpenShiftAdminPassword:
         default: OpenShift UI Password
-      RedhatSubscriptionUserName:
-        default: Red Hat Subscription User Name
-      RedhatSubscriptionPassword:
-        default: Red Hat Subscription Password
-      RedhatSubscriptionPoolID:
-        default: Red Hat Pool ID
+      #RedhatSubscriptionUserName:
+      #  default: Red Hat Subscription User Name
+      #RedhatSubscriptionPassword:
+      #  default: Red Hat Subscription Password
+      #RedhatSubscriptionPoolID:
+      #  default: Red Hat Pool ID
       OpenshiftContainerPlatformVersion:
         default: Openshift Container Platform Version
       MasterInstanceType:
@@ -231,17 +231,17 @@ Parameters:
     MinLength: '8'
     AllowedPattern: ^[^ \\']+$
     NoEcho: 'true'
-  RedhatSubscriptionUserName:
-    Description: Enter Redhat RHN User Name
-    Type: String
-  RedhatSubscriptionPassword:
-    NoEcho: 'true'
-    Description: Enter Redhat RHN Password
-    Type: String
-    AllowedPattern: ^[^ \\']+$
-  RedhatSubscriptionPoolID:
-    Description: Enter Redhat RHN PoolID
-    Type: String
+  #RedhatSubscriptionUserName:
+  #  Description: Enter Redhat RHN User Name
+  #  Type: String
+  #RedhatSubscriptionPassword:
+  #  NoEcho: 'true'
+  #  Description: Enter Redhat RHN Password
+  #  Type: String
+  #  AllowedPattern: ^[^ \\']+$
+  #RedhatSubscriptionPoolID:
+  #  Description: Enter Redhat RHN PoolID
+  #  Type: String
   OpenshiftContainerPlatformVersion:
     Description: OpenShift version to deploy
     Default: '3.10'

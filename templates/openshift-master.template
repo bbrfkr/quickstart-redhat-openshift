@@ -55,12 +55,12 @@ Metadata:
           - NumberOfGluster
           - AutomationBroker
           - ClusterConsole
-      - Label:
-          default: Red Hat Subscription Information
-        Parameters:
-          - RedhatSubscriptionUserName
-          - RedhatSubscriptionPassword
-          - RedhatSubscriptionPoolID
+      #- Label:
+      #    default: Red Hat Subscription Information
+      #  Parameters:
+      #    - RedhatSubscriptionUserName
+      #    - RedhatSubscriptionPassword
+      #    - RedhatSubscriptionPoolID
       - Label:
           default: AWS Quick Start Configuration
         Parameters:
@@ -96,12 +96,12 @@ Metadata:
         default: VPC CIDR
       OpenShiftAdminPassword:
         default: OpenShift UI Password
-      RedhatSubscriptionUserName:
-        default: Red Hat Subscription User Name
-      RedhatSubscriptionPassword:
-        default: Red Hat Subscription Password
-      RedhatSubscriptionPoolID:
-        default: Red Hat Pool ID
+      #RedhatSubscriptionUserName:
+      #  default: Red Hat Subscription User Name
+      #RedhatSubscriptionPassword:
+      #  default: Red Hat Subscription Password
+      #RedhatSubscriptionPoolID:
+      #  default: Red Hat Pool ID
       OpenshiftContainerPlatformVersion:
         default: Openshift Container Platform Version
       MasterInstanceType:
@@ -485,9 +485,9 @@ Resources:
         QSS3BucketName: !Ref 'QSS3BucketName'
         QSS3KeyPrefix: !Ref 'QSS3KeyPrefix'
         OpenShiftAdminPassword: !Ref 'OpenShiftAdminPassword'
-        RedhatSubscriptionUserName: !Ref 'RedhatSubscriptionUserName'
-        RedhatSubscriptionPassword: !Ref 'RedhatSubscriptionPassword'
-        RedhatSubscriptionPoolID: !Ref 'RedhatSubscriptionPoolID'
+        #RedhatSubscriptionUserName: !Ref 'RedhatSubscriptionUserName'
+        #RedhatSubscriptionPassword: !Ref 'RedhatSubscriptionPassword'
+        #RedhatSubscriptionPoolID: !Ref 'RedhatSubscriptionPoolID'
         OutputBucketName: !Ref 'OutputBucketName'
         VPCCIDR: !Ref 'VPCCIDR'
         VPCID: !GetAtt 'VPCStack.Outputs.VPCID'
