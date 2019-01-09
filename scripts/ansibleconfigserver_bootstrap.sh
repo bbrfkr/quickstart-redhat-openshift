@@ -49,7 +49,7 @@ qs_retry_command 10 yum -y install jq
 
 qs_retry_command 10 yum -y install yum-versionlock
 
-qs_retry_command 10 yum -y install ansible-${ANSIBLE_VERSION}
+qs_retry_command 10 yum -y install ansible
 
 yum versionlock add ansible
 sed -i 's/#host_key_checking = False/host_key_checking = False/g' /etc/ansible/ansible.cfg
