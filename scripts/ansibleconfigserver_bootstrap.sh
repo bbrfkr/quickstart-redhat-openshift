@@ -53,7 +53,7 @@ qs_retry_command 10 yum -y install ansible
 
 yum versionlock add ansible
 sed -i 's/#host_key_checking = False/host_key_checking = False/g' /etc/ansible/ansible.cfg
-yum repolist -v | grep OpenShift
+#yum repolist -v | grep OpenShift
 
 qs_retry_command 10 pip install boto3 &> /var/log/userdata.boto3_install.log
 mkdir -p /root/ose_scaling/aws_openshift_quickstart
